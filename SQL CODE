@@ -1,0 +1,126 @@
+-- ==========================================
+-- GREEN CREDIT CAMPUS RECYCLING DATABASE
+-- ==========================================
+
+-- TABLE CREATION
+CREATE TABLE Waste_Categories (
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50) NOT NULL,
+    CreditPerKg NUMBER(5,2) NOT NULL
+);
+
+CREATE TABLE Campus_Bins (
+    BinID INT PRIMARY KEY,
+    Location VARCHAR(100) NOT NULL,
+    CategoryID INT,
+    FOREIGN KEY (CategoryID) REFERENCES Waste_Categories(CategoryID)
+);
+
+CREATE TABLE Students (
+    RollNumber INT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    HostelBlock VARCHAR(10) NOT NULL,
+    TotalCredits NUMBER(10,2) DEFAULT 0
+);
+
+CREATE TABLE Rewards (
+    RewardID INT PRIMARY KEY,
+    RewardName VARCHAR(100) NOT NULL,
+    CreditCost NUMBER(10,2) NOT NULL,
+    StockQuantity INT NOT NULL CHECK (StockQuantity >= 0)
+);
+
+CREATE TABLE Deposits (
+    DepositID INT PRIMARY KEY,
+    RollNumber INT,
+    BinID INT,
+    Weight NUMBER(5,2) NOT NULL CHECK (Weight > 0),
+    CreditsEarned NUMBER(10,2),
+    DepositDate DATE DEFAULT SYSDATE,
+    FOREIGN KEY (RollNumber) REFERENCES Students(RollNumber),
+    FOREIGN KEY (BinID) REFERENCES Campus_Bins(BinID)
+);
+
+CREATE TABLE Redemptions (
+    RedemptionID INT PRIMARY KEY,
+    RollNumber INT,
+    RewardID INT,
+    RedemptionDate DATE DEFAULT SYSDATE,
+    FOREIGN KEY (RollNumber) REFERENCES Students(RollNumber),
+    FOREIGN KEY (RewardID) REFERENCES Rewards(RewardID)
+);
+
+-- PL/SQL
+CREATE OR REPLACE TRIGGER Update_Student_Credits
+AFTER INSERT ON Deposits
+FOR EACH ROW
+BEGIN
+    UPDATE Students
+    SET TotalCredits = TotalCredits + :NEW.CreditsEarned
+    WHERE RollNumber = :NEW.RollNumber;
+END;
+/
+-- Waste Categories
+INSERT INTO Waste_Categories VALUES (1, 'Plastic', 10.00);
+INSERT INTO Waste_Categories VALUES (2, 'E-Waste', 50.00);
+INSERT INTO Waste_Categories VALUES (3, 'Paper', 5.00);
+
+-- Campus Bins
+INSERT INTO Campus_Bins VALUES (101, 'WaterBody', 1);
+INSERT INTO Campus_Bins VALUES (102, 'Kravings', 1);
+INSERT INTO Campus_Bins VALUES (103, 'G-Block', 3);
+INSERT INTO Campus_Bins VALUES (104, 'COS', 1);
+INSERT INTO Campus_Bins VALUES (105, 'TSLAS', 3);
+INSERT INTO Campus_Bins VALUES (106, 'Polytechnic', 2);
+INSERT INTO Campus_Bins VALUES (107, 'TAN', 2);
+INSERT INTO Campus_Bins VALUES (108, 'Hostel A', 1);
+INSERT INTO Campus_Bins VALUES (109, 'Hostel B', 3);
+INSERT INTO Campus_Bins VALUES (110, 'Hostel C', 1);
+INSERT INTO Campus_Bins VALUES (111, 'Hostel D', 2);
+INSERT INTO Campus_Bins VALUES (112, 'Hostel E', 1);
+INSERT INTO Campus_Bins VALUES (113, 'Hostel H', 3);
+INSERT INTO Campus_Bins VALUES (114, 'Hostel J', 1);
+INSERT INTO Campus_Bins VALUES (115, 'Hostel K', 2);
+INSERT INTO Campus_Bins VALUES (116, 'Hostel L', 1);
+INSERT INTO Campus_Bins VALUES (117, 'Hostel M', 3);
+INSERT INTO Campus_Bins VALUES (118, 'Hostel N', 1);
+INSERT INTO Campus_Bins VALUES (119, 'Hostel O', 2);
+INSERT INTO Campus_Bins VALUES (120, 'Hostel PG', 1);
+INSERT INTO Campus_Bins VALUES (121, 'Hostel Q', 3);
+
+-- Rewards
+INSERT INTO Rewards VALUES (1, 'Rs 40 Soft Drink Can', 200.00, 50);
+INSERT INTO Rewards VALUES (2, 'Rs 20 Soft Drink', 100.00, 100);
+INSERT INTO Rewards VALUES (3, 'Rs 50 Campus Bites Coupon', 250.00, 30);
+INSERT INTO Rewards VALUES (4, 'Rs 50 Chilly Chatkara Coupon', 250.00, 30);
+INSERT INTO Rewards VALUES (5, 'Rs 50 Desert Club Coupon', 250.00, 30);
+INSERT INTO Rewards VALUES (6, 'Rs 125 Energy Drink', 625.00, 20);
+INSERT INTO Rewards VALUES (7, 'Rs 20 Chips', 100.00, 100);
+INSERT INTO Rewards VALUES (8, 'Rs 40 Chips', 200.00, 50);
+INSERT INTO Rewards VALUES (9, 'Rs 50 Veg Protein Bar', 250.00, 40);
+INSERT INTO Rewards VALUES (10, 'Rs 100 Kravings Coupon', 500.00, 15);
+
+-- Random Students
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410001, 'Aarav Patel', 'apatel_be26@thapar.edu', 'J', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410003, 'Rohan Verma', 'rverma_be26@thapar.edu', 'M', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410005, 'Kabir Das', 'kdas_be26@thapar.edu', 'H', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410007, 'Aditya Kumar', 'akumar_be26@thapar.edu', 'A', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410009, 'Vivaan Joshi', 'vjoshi_be26@thapar.edu', 'B', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410010, 'Rahul Sharma', 'rsharma_be26@thapar.edu', 'O', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410002, 'Diya Sharma', 'dsharma_be26@thapar.edu', 'E', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410004, 'Ananya Singh', 'asingh_be26@thapar.edu', 'PG', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410006, 'Zara Khan', 'zkhan_be26@thapar.edu', 'Q', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410008, 'Sneha Gupta', 'sgupta_be26@thapar.edu', 'N', 0);
+
+-- Initial Deposits
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1001, 102410001, 114, 2.0, 20.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1002, 102410002, 112, 1.5, 15.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1003, 102410003, 117, 4.0, 20.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1004, 102410004, 120, 5.0, 50.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1005, 102410005, 113, 6.0, 30.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1006, 102410006, 121, 2.0, 10.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1007, 102410007, 108, 3.5, 35.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1008, 102410008, 118, 1.2, 12.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1009, 102410009, 109, 5.0, 25.00);
+INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1010, 102410010, 119, 0.5, 25.00);
