@@ -51,7 +51,7 @@ CREATE TABLE Redemptions (
     FOREIGN KEY (RewardID) REFERENCES Rewards(RewardID)
 );
 
--- PL/SQL
+-- PL/SQL TRIGGER
 CREATE OR REPLACE TRIGGER Update_Student_Credits
 AFTER INSERT ON Deposits
 FOR EACH ROW
@@ -61,6 +61,7 @@ BEGIN
     WHERE RollNumber = :NEW.RollNumber;
 END;
 /
+
 -- Waste Categories
 INSERT INTO Waste_Categories VALUES (1, 'Plastic', 10.00);
 INSERT INTO Waste_Categories VALUES (2, 'E-Waste', 50.00);
@@ -101,7 +102,7 @@ INSERT INTO Rewards VALUES (8, 'Rs 40 Chips', 200.00, 50);
 INSERT INTO Rewards VALUES (9, 'Rs 50 Veg Protein Bar', 250.00, 40);
 INSERT INTO Rewards VALUES (10, 'Rs 100 Kravings Coupon', 500.00, 15);
 
--- 210 Random Students
+-- 210 Students
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410001, 'Aarav Patel', 'apatel_be26@thapar.edu', 'J', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410003, 'Rohan Verma', 'rverma_be26@thapar.edu', 'M', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410005, 'Kabir Das', 'kdas_be26@thapar.edu', 'H', 0);
@@ -212,21 +213,21 @@ INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410108, 'Bhavesh Yadav', 'byadav_be28@thapar.edu', 'M', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410109, 'Chetan Bhagat', 'cbhagat_be28@thapar.edu', 'K', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410110, 'Dipesh Shah', 'dshah_be28@thapar.edu', 'L', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410111, 'Aadya Sharma', 'asharma_be28@thapar.edu', 'E', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410111, 'Aadya Sharma', 'aasharma_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410112, 'Kavya Singh', 'ksingh_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410113, 'Isha Kumar', 'ikumar_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410114, 'Navya Patel', 'npatel_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410115, 'Riya Gupta', 'rgupta_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410116, 'Sana Reddy', 'sreddy_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410117, 'Tara Rao', 'trao_be28@thapar.edu', 'PG', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410118, 'Vidya Joshi', 'vjoshi_be28@thapar.edu', 'Q', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410118, 'Vidya Joshi', 'vidjoshi_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410119, 'Anya Verma', 'averma_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410120, 'Neha Das', 'ndas_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410121, 'Priya Menon', 'pmenon_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410122, 'Pooja Iyer', 'piyer_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410123, 'Shruti Nair', 'snair_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410124, 'Meera Pillai', 'mpillai_be28@thapar.edu', 'N', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410125, 'Kiran Desai', 'kdesai_be28@thapar.edu', 'PG', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410125, 'Kiran Desai', 'kirdesai_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410126, 'Aditi Ahuja', 'aahuja_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410127, 'Nithya Khatri', 'nkhatri_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410128, 'Anika Prakash', 'aprakash_be28@thapar.edu', 'N', 0);
@@ -252,19 +253,19 @@ INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410148, 'Tanvi Bhatia', 'tbhatia_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410149, 'Urvi Arora', 'uarora_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410150, 'Vani Chopra', 'vchopra_be28@thapar.edu', 'Q', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410151, 'Anjali Grover', 'agrover_be28@thapar.edu', 'E', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410151, 'Anjali Grover', 'angrover_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410152, 'Bhumika Batra', 'bbatra_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410153, 'Charu Dhawan', 'cdhawan_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410154, 'Divya Oberoi', 'doberoi_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410155, 'Ekta Khurana', 'ekhurana_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410156, 'Geeta Kapoor', 'gkapoor_be28@thapar.edu', 'N', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410157, 'Heena Sachdeva', 'hsachdeva_be28@thapar.edu', 'PG', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410157, 'Heena Sachdeva', 'hesachdeva_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410158, 'Ira Mehra', 'imehra_be28@thapar.edu', 'Q', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410159, 'Jyoti Lamba', 'jlamba_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410160, 'Komal Nanda', 'knanda_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410161, 'Latika Bedi', 'lbedi_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410162, 'Mansi Puri', 'mpuri_be28@thapar.edu', 'Q', 0);
-INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410163, 'Nikita Sethi', 'nsethi_be28@thapar.edu', 'E', 0);
+INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410163, 'Nikita Sethi', 'nisethi_be28@thapar.edu', 'E', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410164, 'Oshin Sood', 'osood_be28@thapar.edu', 'N', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410165, 'Payal Bhasin', 'pbhasin_be28@thapar.edu', 'PG', 0);
 INSERT INTO Students (RollNumber, Name, Email, HostelBlock, TotalCredits) VALUES (102410166, 'Roshni Wadhwa', 'rwadhwa_be28@thapar.edu', 'Q', 0);
@@ -326,7 +327,6 @@ INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUE
 INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned) VALUES (1010, 102410010, 119, 0.5, 25.00);
 
 -- DEPOSIT STORED PROCEDURE
-
 CREATE OR REPLACE PROCEDURE Log_Campus_Deposit (
     p_RollNumber IN INT,
     p_BinID IN INT,
@@ -340,18 +340,22 @@ BEGIN
     SELECT CategoryID INTO v_CategoryID
     FROM Campus_Bins
     WHERE BinID = p_BinID;
+
     SELECT CreditPerKg INTO v_CreditPerKg
     FROM Waste_Categories
     WHERE CategoryID = v_CategoryID;
+
     v_CreditsEarned := p_Weight * v_CreditPerKg;
+
     SELECT NVL(MAX(DepositID), 1000) + 1 INTO v_DepositID
     FROM Deposits;
+
     INSERT INTO Deposits (DepositID, RollNumber, BinID, Weight, CreditsEarned)
     VALUES (v_DepositID, p_RollNumber, p_BinID, p_Weight, v_CreditsEarned);
 
     COMMIT;
     DBMS_OUTPUT.PUT_LINE('Deposit Logged Successfully. Credits Earned: ' || v_CreditsEarned);
-    
+
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
         DBMS_OUTPUT.PUT_LINE('Error: Invalid Bin ID.');
@@ -361,8 +365,7 @@ EXCEPTION
 END;
 /
 
--- REWARD REDEMPTION
-
+-- REWARD REDEMPTION STORED PROCEDURE
 CREATE OR REPLACE PROCEDURE Redeem_Reward (
     p_RollNumber IN INT,
     p_RewardID IN INT
@@ -377,7 +380,7 @@ BEGIN
     SELECT CreditCost, StockQuantity INTO v_CreditCost, v_StockQuantity
     FROM Rewards
     WHERE RewardID = p_RewardID;
-    
+
     IF v_StockQuantity <= 0 THEN
         RAISE Out_Of_Stock;
     END IF;
@@ -385,7 +388,7 @@ BEGIN
     SELECT TotalCredits INTO v_TotalCredits
     FROM Students
     WHERE RollNumber = p_RollNumber;
-    
+
     IF v_TotalCredits < v_CreditCost THEN
         RAISE Insufficient_Credits;
     END IF;
@@ -393,14 +396,14 @@ BEGIN
     UPDATE Students
     SET TotalCredits = TotalCredits - v_CreditCost
     WHERE RollNumber = p_RollNumber;
-    
+
     UPDATE Rewards
     SET StockQuantity = StockQuantity - 1
     WHERE RewardID = p_RewardID;
 
     SELECT NVL(MAX(RedemptionID), 5000) + 1 INTO v_RedemptionID
     FROM Redemptions;
-    
+
     INSERT INTO Redemptions (RedemptionID, RollNumber, RewardID)
     VALUES (v_RedemptionID, p_RollNumber, p_RewardID);
 
@@ -428,14 +431,14 @@ SET SERVEROUTPUT ON;
 
 DECLARE
     CURSOR c_HostelReport IS
-        SELECT s.HostelBlock, SUM(d.Weight) as TotalWeight, SUM(d.CreditsEarned) as TotalCredits
+        SELECT s.HostelBlock, SUM(d.Weight) AS TotalWeight, SUM(d.CreditsEarned) AS TotalCredits
         FROM Students s
         JOIN Deposits d ON s.RollNumber = d.RollNumber
         GROUP BY s.HostelBlock
         ORDER BY TotalWeight DESC;
-        
-    v_Hostel VARCHAR(10);
-    v_Weight NUMBER(10,2);
+
+    v_Hostel  VARCHAR(10);
+    v_Weight  NUMBER(10,2);
     v_Credits NUMBER(10,2);
 BEGIN
     DBMS_OUTPUT.PUT_LINE('--------------------------------------------------');
@@ -443,33 +446,32 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('--------------------------------------------------');
     DBMS_OUTPUT.PUT_LINE('Hostel | Total Waste (kg) | Total Credits Issued');
     DBMS_OUTPUT.PUT_LINE('--------------------------------------------------');
-    
+
     OPEN c_HostelReport;
-    
+
     LOOP
         FETCH c_HostelReport INTO v_Hostel, v_Weight, v_Credits;
-        EXIT WHEN c_HostelReport%NOTFOUND; -- Exit loop when no more rows
-        
+        EXIT WHEN c_HostelReport%NOTFOUND;
         DBMS_OUTPUT.PUT_LINE(RPAD(v_Hostel, 7) || ' | ' || RPAD(v_Weight, 17) || ' | ' || v_Credits);
     END LOOP;
-    
+
     CLOSE c_HostelReport;
-    
+
     DBMS_OUTPUT.PUT_LINE('--------------------------------------------------');
 END;
 /
--- ADMIN DASHBOARD
+
+-- ADMIN DASHBOARD VIEW
 CREATE OR REPLACE VIEW Admin_Hostel_Dashboard AS
-SELECT 
+SELECT
     s.HostelBlock,
     COUNT(DISTINCT s.RollNumber) AS Participating_Students,
-    SUM(d.Weight) AS Total_Kg_Recycled,
-    SUM(d.CreditsEarned) AS Total_Credits_Issued
+    SUM(d.Weight)                AS Total_Kg_Recycled,
+    SUM(d.CreditsEarned)         AS Total_Credits_Issued
 FROM Students s
 JOIN Deposits d ON s.RollNumber = d.RollNumber
 GROUP BY s.HostelBlock
-HAVING SUM(d.Weight) > 0
-ORDER BY Total_Kg_Recycled DESC;
+HAVING SUM(d.Weight) > 0;
 
 -- PL/SQL FUNCTION
 CREATE OR REPLACE FUNCTION Calculate_Credits (
@@ -486,7 +488,7 @@ BEGIN
     v_TotalCredits := p_Weight * v_CreditPerKg;
 
     RETURN v_TotalCredits;
-    
+
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
         RETURN 0;
